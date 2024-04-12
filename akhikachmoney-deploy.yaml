@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-akhikachoney
+  labels:
+    app: web-akhikachoney
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: web-akhikachoney
+  template:
+    metadata:
+      labels:
+        name: web-akhikachoney
+    spec:
+      containers:
+        - name: web-akhikachoney
+          image: akhibousokhona1/akhikachmoney:v12
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: POSTGRES_USER
+              value: "moussa"
+            - name: POSTGRES_PASSWORD
+              value: "passer"
+            - name: POSTGRES_DB
+              value: "akhikachmoney"
+            - name: DATABASE_URL
+              value: psql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres:5432/$(POSTGRES_DB) #postgres here must match the PostgreSQL service name you created earlier
