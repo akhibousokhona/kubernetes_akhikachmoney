@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web-akhikachoney
-          image: akhibousokhona1/akhikachmoney:v12
+          image: akhibousokhona1/akhikachmoney:v13
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
