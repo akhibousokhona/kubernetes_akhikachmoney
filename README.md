@@ -73,6 +73,14 @@ psql (10.3 (Debian 10.3-1.pgdg90+1))
 Type "help" for help.
 
 akhikachmoney=# 
+############################### secret #########################################
+akhibou@akhibou:~$ echo -n "passer" | base64
+cGFzc2Vy
+akhibou@akhibou:~$ 
+akhibou@akhibou:~$ echo -n "moussa" | base64
+bW91c3Nh
+akhibou@akhibou:~$ echo -n "akhikachmoney" | base64
+YWtoaWthY2htb25leQ==
 
 ############## les logs de l'appli  #############################
 ~$ sudo kubectl logs deploy/web-akhikachoney
