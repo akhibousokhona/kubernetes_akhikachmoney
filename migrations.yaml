@@ -1,33 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: web-akhikachmoney
-  labels:
-    app: web-akhikachmoney
+  name: django-migrations
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: web-akhikachmoney
   template:
-    metadata:
-      labels:
-        name: web-akhikachmoney
     spec:
       containers:
-        - name: web-akhikachmoney
+        - name: django-migrations
           image: akhibousokhona1/akhikachmoney:v1.3
-          command: ["./manage.py", "runserver", "0.0.0.0:8000"]
-          imagePullPolicy: Always
-          resources:
-            requests:
-              memory: 64Mi
-              cpu: 100m
-            limits:
-              memory: 64Mi
-              cpu: 100m
-          ports:
-            - containerPort: 8000
+          command: ['python', 'manage.py', 'migrate','--fake']
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -54,3 +35,5 @@ spec:
                 secretKeyRef:
                   name: django-postgres-credentials
                   key: port
+      restartPolicy: Never
+  backoffLimit: 5
