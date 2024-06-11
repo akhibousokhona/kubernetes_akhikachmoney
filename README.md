@@ -62,7 +62,7 @@ postgres           ClusterIP      10.100.245.189   <none>        5432/TCP       
 web-akhikachoney   LoadBalancer   10.104.4.167     <pending>     80:32088/TCP   82m
 
 ############## Connexion au container  #############################
-~$ sudo kubectl exec -it web-akhikachoney-65c689b66d-x2l85  --container web-akhikachoney -- sh   
+~$ sudo kubectl exec -it web-akhikachmoney-6fdb86777f-2nqf8   --container web-akhikachmoney -- sh    
 /connexion # ls
 connexion     manage.py     utilisateurs
 /connexion # 
