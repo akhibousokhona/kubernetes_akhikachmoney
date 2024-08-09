@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-migrations
+spec:
+  template:
+    spec:
+      containers:
+        - name: django-migrations
+          image: akhibousokhona1/akhikachmoney:v1.3
+          command: ['python', 'manage.py', 'migrate','--fake']
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: django-postgres-credentials
+                  key: user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: django-postgres-credentials
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: django-postgres-credentials
+                  key: userdb
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: django-postgres-credentials
+                  key: dbhost
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: django-postgres-credentials
+                  key: port
+      restartPolicy: Never
+  backoffLimit: 5

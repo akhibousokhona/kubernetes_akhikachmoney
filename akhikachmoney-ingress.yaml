@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: akhikachmoney-ingress
+spec:
+  rules:
+  - host: akhikachmoney.fr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-akhikachmoney
+            port:
+              number: 8000
