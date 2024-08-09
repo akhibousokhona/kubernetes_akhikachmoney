@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: akhikachmoney-cm
-data:
-  POSTGRES_PORT: "5432"
